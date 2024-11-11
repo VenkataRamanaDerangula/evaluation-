@@ -1,7 +1,6 @@
-// src/components/QuizPage.tsx
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './QuizSetup.css'; // Add this import statement
+import './QuizSetup.css';
 
 
 interface Question {
@@ -13,7 +12,7 @@ interface Question {
 const QuizPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const {  category, difficulty, numQuestions } = location.state || {};
+  const { category, difficulty, numQuestions } = location.state || {};
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -25,7 +24,6 @@ const QuizPage: React.FC = () => {
   useEffect(() => {
     if (!category || !difficulty || !numQuestions) return;
 
-    // Fetch questions based on user selection
     fetch(`https://opentdb.com/api.php?amount=${numQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`)
       .then((response) => response.json())
       .then((data) => {
@@ -85,25 +83,26 @@ const QuizPage: React.FC = () => {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div>
-      <h1>Quiz Page</h1>
-      <h2 dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
+    <div id="bg">
+    <h2 dangerouslySetInnerHTML={{ __html: currentQuestion.question }} />
+      <div id="line">
       <ul>
         {currentQuestion.options.map((option) => (
           <li key={option}>
-            <button
+            <button id="quizb"
               onClick={() => handleOptionClick(option)}
               style={{
-                backgroundColor: selectedAnswer === option ? 'lightblue' : 'white',
+                backgroundColor: selectedAnswer === option ? '#55BE87' : '#6153CA',
               }}
               dangerouslySetInnerHTML={{ __html: option }}
             />
           </li>
         ))}
       </ul>
-      <button onClick={handleNextQuestion} disabled={!selectedAnswer}>
+      <button id="next" onClick={handleNextQuestion} disabled={!selectedAnswer}>
         {currentQuestionIndex === questions.length - 1 ? "Finish Quiz" : "Next Question"}
       </button>
+      </div>
     </div>
   );
 };

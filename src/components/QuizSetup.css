@@ -1,7 +1,6 @@
-/* src/components/QuizSetup.css */
 .quiz-setup-container {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f9fc; /* Light background */
+    background-color: #f4f9fc;
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
