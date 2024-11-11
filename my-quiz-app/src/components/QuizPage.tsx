@@ -13,7 +13,7 @@ interface Question {
 const QuizPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { name, category, difficulty, numQuestions } = location.state || {};
+  const {  category, difficulty, numQuestions } = location.state || {};
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
